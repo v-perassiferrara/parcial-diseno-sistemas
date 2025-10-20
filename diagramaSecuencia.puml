@@ -1,0 +1,265 @@
+@startuml diagramaSecuencia
+title Diagrama de Secuencia Corregido - Sistema FORESTACION (Python)
+
+' Actores y Participantes
+actor Usuario
+participant "main.py" as Main
+participant ":CultivoServiceRegistry" as Registry
+participant ":PlantacionService" as PlantServ
+participant ":CultivoFactory" as Factory
+participant ":Plantacion" as Plantacion
+participant ":Tierra" as Tierra
+participant ":RegistroForestal" as Registro
+participant ":TrabajadorService" as TrabServ
+participant ":Trabajador" as Trabajador
+participant ":FincasService" as FincasServ
+participant ":RegistroForestalService" as RegServ
+participant ":TemperaturaReaderTask" as TempTask
+participant ":HumedadReaderTask" as HumTask
+participant ":ControlRiegoTask" as ControlTask
+
+autonumber
+
+' ===== FASE 1: INICIALIZACIÓN DE SERVICIOS (INYECCIÓN DE DEPENDENCIAS) =====
+group #LightBlue Inicialización de Servicios (Inyección de Dependencias Manual)
+    Usuario -> Main: ejecutar programa
+    activate Main
+
+    Main -> Registry: CultivoServiceRegistry()
+    activate Registry
+    note right: El Registry se instancia directamente.
+    return registry
+
+    Main -> PlantServ: PlantacionService(registry)
+    activate PlantServ
+    note right: Se inyecta el Registry en el constructor.
+    return plantacion_service
+
+    Main -> FincasServ: FincasService(plantacion_service)
+    activate FincasServ
+    return fincas_service
+
+    Main -> RegServ: RegistroForestalService()
+    activate RegServ
+    return registro_service
+end
+
+' ===== FASE 2: CREAR TIERRA Y PLANTACIÓN =====
+group #LightGreen Crear Tierra y Plantación
+    Main -> Tierra: Tierra(...)
+    activate Tierra
+    return tierra
+    deactivate Tierra
+
+    Main -> Plantacion: Plantacion(...)
+    activate Plantacion
+    return plantacion
+    deactivate Plantacion
+
+    Main -> Tierra: set_finca(plantacion)
+    activate Tierra
+    return
+    deactivate Tierra
+
+    Main -> Registro: RegistroForestal(tierra, plantacion, ...)
+    activate Registro
+    return registro
+end
+
+' ===== FASE 3: PLANTAR CULTIVOS (FACTORY) =====
+group #LightCyan Plantar Cultivos (Patrón Factory)
+    Main -> PlantServ: plantar(plantacion, "Pino", 5)
+    activate PlantServ
+
+    PlantServ -> PlantServ: calcular superficie disponible
+
+    alt superficie suficiente
+        loop 5 veces
+            PlantServ -> Factory: crear_cultivo("Pino")
+            activate Factory
+            note right
+                Factory Method:
+                Usa un diccionario
+                para crear instancias
+            end note
+            return pino
+            PlantServ -> Plantacion: get_cultivos_interno().append(pino)
+            activate Plantacion
+            return
+        end
+    else superficie insuficiente
+        PlantServ --> Main: raise SuperficieInsuficienteException
+    end
+
+    return
+end
+
+' ===== FASE 4: SISTEMA DE RIEGO (OBSERVER Y CONCURRENCIA) =====
+group #Lavender Sistema de Riego Concurrente (Observer)
+    Main -> TempTask: TemperaturaReaderTask()
+    activate TempTask
+    return tarea_temp
+
+    Main -> HumTask: HumedadReaderTask()
+    activate HumTask
+    return tarea_hum
+
+    Main -> ControlTask: ControlRiegoTask(plantacion_service, plantacion)
+    activate ControlTask
+    return tarea_control
+
+    ' Suscripción de observadores
+    Main -> TempTask: agregar_observador(tarea_control)
+    Main -> HumTask: agregar_observador(tarea_control)
+
+    note right of Main: Se crean e inician los hilos (Threads) para cada tarea.
+    Main -> TempTask: start()
+    Main -> HumTask: start()
+    Main -> ControlTask: start()
+
+    group #White Transcurso de 20 segundos...
+        HumTask -> ControlTask: notificar_observadores(humedad)
+        activate ControlTask
+        ControlTask -> ControlTask: actualizar(humedad)
+        deactivate ControlTask
+
+        TempTask -> ControlTask: notificar_observadores(temperatura)
+        activate ControlTask
+        ControlTask -> ControlTask: actualizar(temperatura)
+        deactivate ControlTask
+
+        ControlTask -> ControlTask: _evaluar_condiciones_y_regar()
+        activate ControlTask
+        alt condiciones óptimas
+            ControlTask -> PlantServ: regar(plantacion)
+            activate PlantServ
+            loop para cada cultivo
+                PlantServ -> Registry: absorber_agua(cultivo)
+                activate Registry
+                Registry -> Registry: handler(cultivo) // Llama al servicio específico
+                return agua_absorbida
+                return
+            end
+            return
+        end
+        deactivate ControlTask
+    end
+
+    Main -> TempTask: detener()
+    Main -> HumTask: detener()
+    Main -> ControlTask: detener()
+    note right: Se detienen los hilos de forma segura
+end
+
+
+
+' ===== FASE 5: GESTIÓN DE TRABAJADORES =====
+group #LightPink Gestión de Trabajadores
+    ' Creación de trabajador
+    Main -> Trabajador: Trabajador(...)
+    activate Trabajador
+    return trabajador
+    deactivate Trabajador
+
+    ' Asignación a plantación
+    Main -> Plantacion: set_trabajadores([trabajador])
+    activate Plantacion
+    return
+    deactivate Plantacion
+
+    ' Inicio de jornada laboral
+    Main -> TrabServ: trabajar(trabajador, fecha, herramienta)
+    activate TrabServ
+
+    ' Verificación de aptitud médica
+    TrabServ -> Trabajador: get_apto_medico()
+    activate Trabajador
+    return apto_medico
+    deactivate Trabajador
+
+    TrabServ -> apto_medico: esta_apto()
+    ' activate apto_medico
+    return es_apto
+    ' deactivate apto_medico
+
+    alt trabajador apto
+        ' Obtención de tareas
+        TrabServ -> Trabajador: get_tareas()
+        activate Trabajador
+        return tareas
+        deactivate Trabajador
+
+        ' Procesamiento de cada tarea
+        loop para cada tarea del día
+            TrabServ -> tarea: set_completada(True)
+            activate tarea
+            return
+            deactivate tarea
+        end
+        TrabServ --> Main: True
+    else trabajador no apto
+        TrabServ --> Main: False
+    end
+    deactivate TrabServ
+end
+
+' ===== FASE 6: OPERACIONES DE FINCAS Y COSECHA =====
+group #LightSalmon Operaciones de Fincas (Cosecha)
+    Main -> FincasServ: add_finca(registro)
+    activate FincasServ
+    return
+
+    Main -> FincasServ: fumigar(1, "insecticida orgánico")
+    activate FincasServ
+    loop por cada cultivo en la plantación
+        FincasServ -> Registry: mostrar_datos(cultivo)
+        activate Registry
+        note right
+            Registry Pattern:
+            Despacha al servicio
+            específico del cultivo
+        end note
+        return
+    end
+    return
+
+    Main -> FincasServ: cosechar_yempaquetar(Lechuga)
+    activate FincasServ
+    FincasServ -> FincasServ: new Paquete<Lechuga>()
+    loop por cada cultivo en la plantación
+        alt cultivo es Lechuga
+            FincasServ -> FincasServ: paquete.add_item(lechuga)
+        end
+    end
+    return paquete_lechugas
+end
+
+' ===== FASE 7: PERSISTENCIA (PICKLE) =====
+group #LightGoldenRodYellow Persistencia en Disco (Pickle)
+    Main -> RegServ: persistir(registro)
+    activate RegServ
+    alt persistencia exitosa
+        RegServ -> RegServ: pickle.dump(registro, file)
+        note right
+            Serialización de objetos Python
+            usando el módulo `pickle`.
+        end note
+        return
+    else error de I/O
+        RegServ --> Main: raise PersistenciaException
+    end
+
+    Main -> RegServ: leer_registro("Juan Perez")
+    activate RegServ
+    alt lectura exitosa
+        RegServ -> RegServ: pickle.load(file)
+        return registro_leido
+    else archivo no encontrado
+        RegServ --> Main: raise PersistenciaException
+    end
+end
+
+Main --> Usuario: Programa completado
+deactivate Main
+
+@enduml
