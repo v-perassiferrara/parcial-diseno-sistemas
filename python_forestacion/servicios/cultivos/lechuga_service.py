@@ -2,14 +2,14 @@
 from typing import TYPE_CHECKING
 
 # Local application
-from python_forestacion.servicios.cultivos.hortaliza_service import HortalizaService
+from python_forestacion.servicios.cultivos.cultivo_service import CultivoService
 from python_forestacion.patrones.strategy.absorcion_agua_strategy import AbsorcionAguaStrategy
 
 if TYPE_CHECKING:
     from python_forestacion.entidades.cultivos.lechuga import Lechuga
 
 
-class LechugaService(HortalizaService):
+class LechugaService(CultivoService):
     """Servicio específico para la gestión de Lechugas."""
 
     def __init__(self, estrategia_absorcion: AbsorcionAguaStrategy):
