@@ -14,8 +14,8 @@ package "entidades.cultivos" {
     }
 
     abstract class Arbol {
-        _id: int
-        _altura: float
+        #_id: int
+        #_altura: float
         {static} _cant_arboles: int
         +get_id(): int
         +get_altura(): float
@@ -249,13 +249,12 @@ ControlRiegoTask ..> PlantacionService : usa >
 
 note top of CultivoServiceRegistry
   <b>Singleton & Registry Pattern</b>
-  - Aunque implementa Singleton, en el código
-    se instancia directamente: `registry = CultivoServiceRegistry()`
+  - Solo puede existir una instancia del registro.
   - Diccionarios (handlers) para despacho dinámico.
 end note
 
 note right of PlantacionService
-  <b>Inyección de Dependencia (Manual)</b>
+  <b>Inyección de Dependencia</b>
   Recibe la instancia del Registry
   en su constructor.
 end note

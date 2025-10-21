@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from python_forestacion.servicios.cultivos.cultivo_service_registry import CultivoServiceRegistry
 
 class RegistroForestalService:
-    """Servicio para la persistencia de RegistroForestal."""
+    """Servicio para la persistencia de RegistroForestal. Similar a un "repositorio". """
 
     def __init__(self):
         from python_forestacion.servicios.cultivos.cultivo_service_registry import CultivoServiceRegistry
