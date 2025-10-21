@@ -16,7 +16,16 @@ class PlantacionService:
         self._cultivo_registry = CultivoServiceRegistry.get_instance()
 
     def plantar(self, plantacion: 'Plantacion', especie: str, cantidad: int) -> None:
-        """Planta una cantidad de cultivos de una especie."""
+        """Planta una cantidad de cultivos de una especie en la plantacion.
+
+        Args:
+            plantacion (Plantacion): La plantación donde se plantarán los cultivos.
+            especie (str): El tipo de cultivo a plantar (ej. 'Pino', 'Olivo').
+            cantidad (int): El número de cultivos a plantar.
+
+        Raises:
+            SuperficieInsuficienteException: Si no hay suficiente superficie.
+        """
         superficie_ocupada = sum(c.get_superficie() for c in plantacion.get_cultivos_interno())
         superficie_disponible = plantacion.get_superficie() - superficie_ocupada
 
@@ -32,7 +41,14 @@ class PlantacionService:
             plantacion.get_cultivos_interno().append(nuevo_cultivo)
 
     def regar(self, plantacion: 'Plantacion') -> None:
-        """Riega todos los cultivos de la plantacion."""
+        """Riega todos los cultivos de la plantacion, consumiendo agua.
+
+        Args:
+            plantacion (Plantacion): La plantación a regar.
+
+        Raises:
+            AguaAgotadaException: Si no hay suficiente agua para el riego.
+        """
         if plantacion.get_agua_disponible() < AGUA_CONSUMIDA_RIEGO:
             raise AguaAgotadaException(AGUA_CONSUMIDA_RIEGO, plantacion.get_agua_disponible())
 

@@ -2,6 +2,7 @@ import threading
 import time
 from typing import TYPE_CHECKING
 from python_forestacion.patrones.observer.observer import Observer
+from python_forestacion.patrones.observer.eventos.evento_sensor import EventoSensor
 from python_forestacion.constantes import TEMP_MIN_RIEGO, TEMP_MAX_RIEGO, HUMEDAD_MAX_RIEGO, INTERVALO_CONTROL_RIEGO
 from python_forestacion.excepciones.agua_agotada_exception import AguaAgotadaException
 
@@ -11,8 +12,8 @@ if TYPE_CHECKING:
     from python_forestacion.entidades.terrenos.plantacion import Plantacion
     from python_forestacion.servicios.terrenos.plantacion_service import PlantacionService
 
-class ControlRiegoTask(threading.Thread, Observer[float]):
-    """Controlador de riego que observa los sensores."""
+class ControlRiegoTask(threading.Thread, Observer[EventoSensor]):
+    """Controlador de riego que observa los sensores y reacciona a eventos."""
 
     def __init__(
         self,
@@ -32,13 +33,12 @@ class ControlRiegoTask(threading.Thread, Observer[float]):
         sensor_temperatura.agregar_observador(self)
         sensor_humedad.agregar_observador(self)
 
-    def actualizar(self, evento: float) -> None:
-        # Este metodo es llamado por los dos sensores (Observable)
-        # Una forma simple de distinguir es por el rango de valores
-        if -25 <= evento <= 50:
-            self._ultima_temperatura = evento
-        elif 0 <= evento <= 100:
-            self._ultima_humedad = evento
+    def actualizar(self, evento: EventoSensor) -> None:
+        """Este metodo es llamado por los sensores (Observable) cuando hay un nuevo evento."""
+        if evento.tipo_sensor == "temperatura":
+            self._ultima_temperatura = evento.valor
+        elif evento.tipo_sensor == "humedad":
+            self._ultima_humedad = evento.valor
 
     def _evaluar_condiciones_y_regar(self) -> None:
         temp = self._ultima_temperatura
@@ -57,8 +57,12 @@ class ControlRiegoTask(threading.Thread, Observer[float]):
             print("[Control Riego] Condiciones no optimas para riego.")
 
     def run(self) -> None:
+        print("[INFO] Control de Riego iniciado. Esperando lecturas de sensores...")
         while not self._detenido.is_set():
             self._evaluar_condiciones_y_regar()
+            # La evaluación ahora podría ser menos frecuente o incluso eliminarse si
+            # la lógica de riego se moviera completamente dentro de 'actualizar'.
+            # Por ahora, se mantiene para no alterar demasiado el flujo.
             time.sleep(INTERVALO_CONTROL_RIEGO)
 
     def detener(self) -> None:

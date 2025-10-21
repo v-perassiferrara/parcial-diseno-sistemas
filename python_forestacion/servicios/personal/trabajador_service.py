@@ -11,10 +11,29 @@ class TrabajadorService:
     """Servicio para la gestion de Trabajador."""
 
     def asignar_apto_medico(self, trabajador: 'Trabajador', apto: bool, fecha_emision: date, observaciones: str) -> None:
+        """Asigna un certificado de apto médico a un trabajador.
+
+        Args:
+            trabajador (Trabajador): El trabajador al que se le asigna el apto.
+            apto (bool): True si el trabajador está apto, False en caso contrario.
+            fecha_emision (date): La fecha de emisión del certificado.
+            observaciones (str): Observaciones adicionales del médico.
+        """
         apto_medico = AptoMedico(apto, fecha_emision, observaciones)
         trabajador.set_apto_medico(apto_medico)
 
     def trabajar(self, trabajador: 'Trabajador', fecha: date, util: 'Herramienta') -> bool:
+        """Simula a un trabajador realizando todas sus tareas para una fecha.
+
+        Args:
+            trabajador (Trabajador): El trabajador que realizará las tareas.
+            fecha (date): La fecha para la cual se buscan las tareas.
+            util (Herramienta): La herramienta que usará para las tareas.
+
+        Returns:
+            bool: True si el trabajador pudo realizar tareas, False si no tenía
+                apto médico.
+        """
         apto_medico = trabajador.get_apto_medico()
         if not apto_medico or not apto_medico.esta_apto():
             print(f"El trabajador {trabajador.get_nombre()} no tiene apto medico vigente.")

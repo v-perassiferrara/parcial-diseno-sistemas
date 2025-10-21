@@ -17,6 +17,11 @@ class RegistroForestalService:
         self._registry: 'CultivoServiceRegistry' = CultivoServiceRegistry.get_instance()
 
     def mostrar_datos(self, registro: 'RegistroForestal') -> None:
+        """Imprime en consola los datos formateados de un registro forestal.
+
+        Args:
+            registro (RegistroForestal): El objeto de registro a mostrar.
+        """
         print("\nREGISTRO FORESTAL")
         print("=================")
         print(f"Padron:      {registro.get_id_padron()}")
@@ -34,6 +39,14 @@ class RegistroForestalService:
             self._registry.mostrar_datos(cultivo)
 
     def persistir(self, registro: 'RegistroForestal') -> None:
+        """Guarda un objeto RegistroForestal en disco usando pickle.
+
+        Args:
+            registro (RegistroForestal): El registro a persistir.
+
+        Raises:
+            PersistenciaException: Si ocurre un error durante la escritura.
+        """
         nombre_archivo = f"{registro.get_propietario()}{EXTENSION_DATA}"
         ruta_completa = os.path.join(DIRECTORIO_DATA, nombre_archivo)
 
@@ -52,6 +65,18 @@ class RegistroForestalService:
 
     @staticmethod
     def leer_registro(propietario: str) -> 'RegistroForestal':
+        """Lee un objeto RegistroForestal desde disco.
+
+        Args:
+            propietario (str): El nombre del propietario para encontrar el archivo.
+
+        Raises:
+            ValueError: Si el nombre del propietario es nulo o vacío.
+            PersistenciaException: Si el archivo no existe o está corrupto.
+
+        Returns:
+            RegistroForestal: El objeto recuperado desde el archivo.
+        """
         if not propietario:
             raise ValueError("El nombre del propietario no puede ser nulo o vacio")
 

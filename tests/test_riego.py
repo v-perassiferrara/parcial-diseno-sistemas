@@ -2,10 +2,12 @@
 import unittest
 from unittest.mock import Mock, patch
 import threading
+from datetime import datetime
 
 from python_forestacion.riego.control.control_riego_task import ControlRiegoTask
 from python_forestacion.riego.sensores.humedad_reader_task import HumedadReaderTask
 from python_forestacion.riego.sensores.temperatura_reader_task import TemperaturaReaderTask
+from python_forestacion.patrones.observer.eventos.evento_sensor import EventoSensor
 from python_forestacion.excepciones.agua_agotada_exception import AguaAgotadaException
 from python_forestacion.constantes import SENSOR_HUMEDAD_MIN, SENSOR_HUMEDAD_MAX, SENSOR_TEMP_MIN, SENSOR_TEMP_MAX, TEMP_MIN_RIEGO, HUMEDAD_MAX_RIEGO
 
@@ -40,11 +42,13 @@ class TestRiego(unittest.TestCase):
         self.assertLessEqual(humedad, SENSOR_HUMEDAD_MAX)
 
     def test_control_riego_actualizar(self):
-        """Verifica que el controlador actualice sus valores internos desde los sensores."""
-        self.control_riego.actualizar(30.5)  # Simula temperatura
+        """Verifica que el controlador actualice sus valores internos desde un EventoSensor."""
+        evento_temp = EventoSensor(tipo_sensor="temperatura", valor=30.5, timestamp=datetime.now())
+        self.control_riego.actualizar(evento_temp)
         self.assertEqual(self.control_riego._ultima_temperatura, 30.5)
 
-        self.control_riego.actualizar(75.2)  # Simula humedad
+        evento_hum = EventoSensor(tipo_sensor="humedad", valor=75.2, timestamp=datetime.now())
+        self.control_riego.actualizar(evento_hum)
         self.assertEqual(self.control_riego._ultima_humedad, 75.2)
 
     def test_evaluar_condiciones_riego_optimo(self):
@@ -91,24 +95,30 @@ class TestRiego(unittest.TestCase):
 
         self.mock_plantacion_service.regar.assert_called_once()
 
-    @patch('time.sleep')
-    def test_run_y_detener_sensores(self, mock_sleep):
-        """Verifica que los hilos de los sensores puedan iniciarse y detenerse."""
-        sensor_temp = TemperaturaReaderTask()
-        sensor_hum = HumedadReaderTask()
+    def test_sensores_notifican_evento(self):
+        """Verifica que los sensores notifican un EventoSensor a los observadores."""
+        
+        evento_ejecutado = threading.Event()
 
-        # Mock para evitar que el bucle se ejecute más de una vez en el test
-        sensor_temp._detenido.set()
-        sensor_hum._detenido.set()
+        class TestHumedadReaderTask(HumedadReaderTask):
+            def run(self):
+                super().run()
+                evento_ejecutado.set() # Avisa que el run terminó
 
-        sensor_temp.start()
+        sensor_hum = TestHumedadReaderTask()
+        mock_observer = Mock()
+        sensor_hum.agregar_observador(mock_observer)
+
         sensor_hum.start()
+        sensor_hum.detener()
+        
+        # Esperamos a que el evento se complete (con un timeout)
+        evento_ejecutado.wait(timeout=2)
 
-        sensor_temp.join(timeout=1)
-        sensor_hum.join(timeout=1)
-
-        self.assertFalse(sensor_temp.is_alive())
-        self.assertFalse(sensor_hum.is_alive())
+        mock_observer.actualizar.assert_called()
+        call_args = mock_observer.actualizar.call_args[0][0]
+        self.assertIsInstance(call_args, EventoSensor)
+        self.assertEqual(call_args.tipo_sensor, "humedad")
 
 
 if __name__ == '__main__':

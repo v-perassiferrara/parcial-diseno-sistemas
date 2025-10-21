@@ -1,11 +1,13 @@
 import threading
 import time
 import random
+from datetime import datetime
 from python_forestacion.patrones.observer.observable import Observable
+from python_forestacion.patrones.observer.eventos.evento_sensor import EventoSensor
 from python_forestacion.constantes import INTERVALO_SENSOR_HUMEDAD, SENSOR_HUMEDAD_MIN, SENSOR_HUMEDAD_MAX
 
-class HumedadReaderTask(threading.Thread, Observable[float]):
-    """Sensor de humedad que se ejecuta en un hilo separado."""
+class HumedadReaderTask(threading.Thread, Observable[EventoSensor]):
+    """Sensor de humedad que se ejecuta en un hilo separado y notifica eventos."""
 
     def __init__(self):
         threading.Thread.__init__(self, daemon=True)
@@ -18,8 +20,12 @@ class HumedadReaderTask(threading.Thread, Observable[float]):
     def run(self) -> None:
         while not self._detenido.is_set():
             humedad = self._leer_humedad()
-            # print(f"[Sensor Humedad] Lectura: {humedad:.2f}%") # Descomentar para debug
-            self.notificar_observadores(humedad)
+            evento = EventoSensor(
+                tipo_sensor="humedad",
+                valor=humedad,
+                timestamp=datetime.now()
+            )
+            self.notificar_observadores(evento)
             time.sleep(INTERVALO_SENSOR_HUMEDAD)
 
     def detener(self) -> None:
