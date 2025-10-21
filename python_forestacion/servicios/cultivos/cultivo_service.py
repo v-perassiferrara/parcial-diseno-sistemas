@@ -22,7 +22,7 @@ class CultivoService(ABC):
 
         Args:
             estrategia_absorcion (AbsorcionAguaStrategy): La estrategia a usar para
-                el cálculo de absorción de agua.
+                el cálculo de absorción de agua. Así, la clase CultivoService es la que hace de "contexto" en el patrón
         """
         self._estrategia_absorcion = estrategia_absorcion
 
