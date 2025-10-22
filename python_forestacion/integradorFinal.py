@@ -132,7 +132,7 @@ Total de directorios procesados: 22
 
 # ==============================================================================
 # ARCHIVO 1/67: main.py
-# Directorio: .
+# Directorio: ..
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\main.py
 # ==============================================================================
 
