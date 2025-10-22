@@ -3,8 +3,8 @@ INTEGRADOR FINAL - CONSOLIDACION COMPLETA DEL PROYECTO
 ============================================================================
 Directorio raiz: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion
 Fecha de generacion: 2025-10-21 19:58:16
-Total de archivos integrados: 66
-Total de directorios procesados: 21
+Total de archivos integrados: 67
+Total de directorios procesados: 22
 ============================================================================
 """
 
@@ -12,114 +12,336 @@ Total de directorios procesados: 21
 # TABLA DE CONTENIDOS
 # ==============================================================================
 
+# DIRECTORIO: ..
+#   1. main.py
+#
 # DIRECTORIO: .
-#   1. __init__.py
-#   2. constantes.py
+#   2. __init__.py
+#   3. constantes.py
 #
 # DIRECTORIO: entidades
-#   3. __init__.py
+#   4. __init__.py
 #
 # DIRECTORIO: entidades\cultivos
-#   4. __init__.py
-#   5. arbol.py
-#   6. cultivo.py
-#   7. hortaliza.py
-#   8. lechuga.py
-#   9. olivo.py
-#   10. pino.py
-#   11. tipo_aceituna.py
-#   12. zanahoria.py
+#   5. __init__.py
+#   6. arbol.py
+#   7. cultivo.py
+#   8. hortaliza.py
+#   9. lechuga.py
+#   10. olivo.py
+#   11. pino.py
+#   12. tipo_aceituna.py
+#   13. zanahoria.py
 #
 # DIRECTORIO: entidades\personal
-#   13. __init__.py
-#   14. apto_medico.py
-#   15. herramienta.py
-#   16. tarea.py
-#   17. trabajador.py
+#   14. __init__.py
+#   15. apto_medico.py
+#   16. herramienta.py
+#   17. tarea.py
+#   18. trabajador.py
 #
 # DIRECTORIO: entidades\terrenos
-#   18. __init__.py
-#   19. plantacion.py
-#   20. registro_forestal.py
-#   21. tierra.py
+#   19. __init__.py
+#   20. plantacion.py
+#   21. registro_forestal.py
+#   22. tierra.py
 #
 # DIRECTORIO: excepciones
-#   22. __init__.py
-#   23. agua_agotada_exception.py
-#   24. forestacion_exception.py
-#   25. mensajes_exception.py
-#   26. persistencia_exception.py
-#   27. superficie_insuficiente_exception.py
+#   23. __init__.py
+#   24. agua_agotada_exception.py
+#   25. forestacion_exception.py
+#   26. mensajes_exception.py
+#   27. persistencia_exception.py
+#   28. superficie_insuficiente_exception.py
 #
 # DIRECTORIO: patrones
-#   28. __init__.py
+#   29. __init__.py
 #
 # DIRECTORIO: patrones\factory
-#   29. __init__.py
-#   30. cultivo_factory.py
+#   30. __init__.py
+#   31. cultivo_factory.py
 #
 # DIRECTORIO: patrones\observer
-#   31. __init__.py
-#   32. observable.py
-#   33. observer.py
+#   32. __init__.py
+#   33. observable.py
+#   34. observer.py
 #
 # DIRECTORIO: patrones\observer\eventos
-#   34. __init__.py
-#   35. evento_plantacion.py
-#   36. evento_sensor.py
+#   35. __init__.py
+#   36. evento_plantacion.py
+#   37. evento_sensor.py
 #
 # DIRECTORIO: patrones\singleton
-#   37. __init__.py
+#   38. __init__.py
 #
 # DIRECTORIO: patrones\strategy
-#   38. __init__.py
-#   39. absorcion_agua_strategy.py
+#   39. __init__.py
+#   40. absorcion_agua_strategy.py
 #
 # DIRECTORIO: patrones\strategy\impl
-#   40. __init__.py
-#   41. absorcion_constante_strategy.py
-#   42. absorcion_seasonal_strategy.py
+#   41. __init__.py
+#   42. absorcion_constante_strategy.py
+#   43. absorcion_seasonal_strategy.py
 #
 # DIRECTORIO: riego
-#   43. __init__.py
+#   44. __init__.py
 #
 # DIRECTORIO: riego\control
-#   44. __init__.py
-#   45. control_riego_task.py
+#   45. __init__.py
+#   46. control_riego_task.py
 #
 # DIRECTORIO: riego\sensores
-#   46. __init__.py
-#   47. humedad_reader_task.py
-#   48. temperatura_reader_task.py
+#   47. __init__.py
+#   48. humedad_reader_task.py
+#   49. temperatura_reader_task.py
 #
 # DIRECTORIO: servicios
-#   49. __init__.py
+#   50. __init__.py
 #
 # DIRECTORIO: servicios\cultivos
-#   50. __init__.py
-#   51. arbol_service.py
-#   52. cultivo_service.py
-#   53. cultivo_service_registry.py
-#   54. lechuga_service.py
-#   55. olivo_service.py
-#   56. pino_service.py
-#   57. zanahoria_service.py
+#   51. __init__.py
+#   52. arbol_service.py
+#   53. cultivo_service.py
+#   54. cultivo_service_registry.py
+#   55. lechuga_service.py
+#   56. olivo_service.py
+#   57. pino_service.py
+#   58. zanahoria_service.py
 #
 # DIRECTORIO: servicios\negocio
-#   58. __init__.py
-#   59. fincas_service.py
-#   60. paquete.py
+#   59. __init__.py
+#   60. fincas_service.py
+#   61. paquete.py
 #
 # DIRECTORIO: servicios\personal
-#   61. __init__.py
-#   62. trabajador_service.py
+#   62. __init__.py
+#   63. trabajador_service.py
 #
 # DIRECTORIO: servicios\terrenos
-#   63. __init__.py
-#   64. plantacion_service.py
-#   65. registro_forestal_service.py
-#   66. tierra_service.py
+#   64. __init__.py
+#   65. plantacion_service.py
+#   66. registro_forestal_service.py
+#   67. tierra_service.py
 #
+
+
+
+################################################################################
+# DIRECTORIO: ..
+################################################################################
+
+# ==============================================================================
+# ARCHIVO 1/67: main.py
+# Directorio: .
+# Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\main.py
+# ==============================================================================
+
+
+import time
+from datetime import date
+
+# Importaciones de entidades
+from python_forestacion.entidades.personal.trabajador import Trabajador
+from python_forestacion.entidades.personal.tarea import Tarea
+from python_forestacion.entidades.personal.herramienta import Herramienta
+from python_forestacion.entidades.terrenos.registro_forestal import RegistroForestal
+from python_forestacion.entidades.cultivos.pino import Pino
+from python_forestacion.entidades.cultivos.lechuga import Lechuga
+
+# Importaciones de servicios
+from python_forestacion.servicios.terrenos.tierra_service import TierraService
+from python_forestacion.servicios.terrenos.plantacion_service import PlantacionService
+from python_forestacion.servicios.terrenos.registro_forestal_service import RegistroForestalService
+from python_forestacion.servicios.personal.trabajador_service import TrabajadorService
+from python_forestacion.servicios.negocio.fincas_service import FincasService
+from python_forestacion.servicios.cultivos.cultivo_service_registry import CultivoServiceRegistry
+
+# Importaciones de riego
+from python_forestacion.riego.sensores.temperatura_reader_task import TemperaturaReaderTask
+from python_forestacion.riego.sensores.humedad_reader_task import HumedadReaderTask
+from python_forestacion.riego.control.control_riego_task import ControlRiegoTask
+
+# Importaciones de excepciones
+from python_forestacion.excepciones.superficie_insuficiente_exception import SuperficieInsuficienteException
+from python_forestacion.excepciones.persistencia_exception import PersistenciaException
+
+# Importaciones de constantes
+from python_forestacion.constantes import THREAD_JOIN_TIMEOUT
+
+
+def main():
+    """Punto de entrada principal de la aplicacion."""
+    print("=" * 70)
+    print("         SISTEMA DE GESTION FORESTAL - PATRONES DE DISENO")
+    print("=" * 70)
+
+    # ----------------------------------------------------------------------
+    # PATRON SINGLETON: Inicializando servicios
+    # ----------------------------------------------------------------------
+    print("\n" + "-" * 70)
+    print("  PATRON SINGLETON: Inicializando servicios")
+    print("-" * 70)
+
+    tierra_service = TierraService()
+    plantacion_service = PlantacionService()
+    trabajador_service = TrabajadorService()
+    registro_service = RegistroForestalService()
+    fincas_service = FincasService()
+
+    # Validar que el Registry es un Singleton
+    registry1 = CultivoServiceRegistry.get_instance()
+    registry2 = CultivoServiceRegistry.get_instance()
+    if registry1 is registry2:
+        print("[OK] Todos los servicios comparten la misma instancia del Registry")
+    else:
+        print("[ERROR] Las instancias del Registry son diferentes")
+
+    # ----------------------------------------------------------------------
+    # 1. Creacion de Entidades
+    # ----------------------------------------------------------------------
+    print("\n1. Creando tierra con plantacion...")
+    terreno = tierra_service.crear_tierra_con_plantacion(
+        id_padron_catastral=1,
+        superficie=100.0,  # Superficie pequeña para probar limites
+        domicilio="Agrelo, Mendoza",
+        nombre_plantacion="Finca del Madero"
+    )
+    plantacion = terreno.get_finca()
+    print(f"[OK] Plantacion '{plantacion.get_nombre()}' creada en '{terreno.get_domicilio()}' con {plantacion.get_superficie()} m².")
+
+    registro = RegistroForestal(
+        id_padron=1,
+        tierra=terreno,
+        plantacion=plantacion,
+        propietario="Juan Perez",
+        avaluo=50309233.55
+    )
+    print(f"[OK] Registro Forestal para '{registro.get_propietario()}' creado.")
+
+    # ----------------------------------------------------------------------
+    # 2. PATRON FACTORY: Plantando cultivos
+    # ----------------------------------------------------------------------
+    print("\n" + "-" * 70)
+    print("  PATRON FACTORY: Plantando cultivos")
+    print("-" * 70)
+
+    try:
+        print("Plantando 5 Pinos...")
+        plantacion_service.plantar(plantacion, "Pino", 5)
+        print("Plantando 5 Olivos...")
+        plantacion_service.plantar(plantacion, "Olivo", 5)
+        print("Plantando 5 Lechugas...")
+        plantacion_service.plantar(plantacion, "Lechuga", 5)
+        print("Plantando 5 Zanahorias...")
+        plantacion_service.plantar(plantacion, "Zanahoria", 5)
+        print("[OK] Cultivos plantados exitosamente.")
+    except SuperficieInsuficienteException as e:
+        print(f"[!] ADVERTENCIA: {e.get_user_message()}")
+
+    # ----------------------------------------------------------------------
+    # 3. PATRON OBSERVER: Sistema de Riego Automatizado (20 segundos)
+    # ----------------------------------------------------------------------
+    print("\n" + "-" * 70)
+    print("  PATRON OBSERVER: Sistema de Riego Automatizado (20 segundos)")
+    print("-" * 70)
+
+    tarea_temp = TemperaturaReaderTask()
+    tarea_hum = HumedadReaderTask()
+    tarea_control = ControlRiegoTask(tarea_temp, tarea_hum, plantacion, plantacion_service)
+
+    print("Iniciando sensores y control de riego...")
+    tarea_temp.start()
+    tarea_hum.start()
+    tarea_control.start()
+
+    time.sleep(20)
+
+    print("\nDeteniendo sistema de riego...")
+    tarea_temp.detener()
+    tarea_hum.detener()
+    tarea_control.detener()
+    tarea_temp.join(timeout=THREAD_JOIN_TIMEOUT)
+    tarea_hum.join(timeout=THREAD_JOIN_TIMEOUT)
+    tarea_control.join(timeout=THREAD_JOIN_TIMEOUT)
+    print("[OK] Sistema de riego detenido de forma segura.")
+
+    # ----------------------------------------------------------------------
+    # 4. Gestion de Personal
+    # ----------------------------------------------------------------------
+    print("\n" + "-" * 70)
+    print("  Gestion de Personal")
+    print("-" * 70)
+
+    tareas = [
+        Tarea(1, date.today(), "Desmalezar"),
+        Tarea(2, date.today(), "Abonar"),
+        Tarea(3, date.today(), "Marcar surcos")
+    ]
+    trabajador = Trabajador(dni=43888734, nombre="Juan Perez", tareas=tareas)
+    plantacion.set_trabajadores([trabajador])
+    print(f"[OK] Trabajador '{trabajador.get_nombre()}' asignado a la plantacion.")
+
+    print("\nAsignando apto medico...")
+    trabajador_service.asignar_apto_medico(
+        trabajador=trabajador,
+        apto=True,
+        fecha_emision=date.today(),
+        observaciones="Estado de salud: excelente"
+    )
+    print("[OK] Apto medico asignado.")
+
+    herramienta = Herramienta(id_herramienta=1, nombre="Pala", certificado_hys=True)
+    print("\nEjecutando tareas del trabajador...")
+    trabajador_service.trabajar(trabajador, date.today(), herramienta)
+
+    # ----------------------------------------------------------------------
+    # 5. Operaciones de Negocio y Persistencia
+    # ----------------------------------------------------------------------
+    print("\n" + "-" * 70)
+    print("  Operaciones de Negocio y Persistencia")
+    print("-" * 70)
+
+    fincas_service.add_finca(registro)
+    print("[OK] Finca agregada al servicio de gestion de fincas.")
+
+    fincas_service.fumigar(id_padron=1, plaguicida="insecto organico")
+
+    # Cosecha (usa Paquete generico)
+    caja_lechugas = fincas_service.cosechar_yempaquetar(Lechuga)
+    caja_lechugas.mostrar_contenido_caja()
+
+    caja_pinos = fincas_service.cosechar_yempaquetar(Pino)
+    caja_pinos.mostrar_contenido_caja()
+
+    # Persistencia
+    try:
+        print("\nPersistiendo registro...")
+        registro_service.persistir(registro)
+    except PersistenciaException as e:
+        print(f"[!] ERROR: {e.get_user_message()}")
+
+    # Lectura
+    try:
+        print("\nLeyendo registro desde disco...")
+        registro_leido = RegistroForestalService.leer_registro("Juan Perez")
+        registro_service.mostrar_datos(registro_leido)
+    except (PersistenciaException, ValueError) as e:
+        print(f"[!] ERROR: {e}")
+
+    # ----------------------------------------------------------------------
+    # Finalizacion
+    # ----------------------------------------------------------------------
+    print("\n" + "=" * 70)
+    print("              EJEMPLO COMPLETADO EXITOSAMENTE")
+    print("=" * 70)
+    print("  [OK] SINGLETON   - CultivoServiceRegistry (instancia unica)")
+    print("  [OK] FACTORY     - Creacion de cultivos")
+    print("  [OK] OBSERVER    - Sistema de sensores y eventos")
+    print("  [OK] STRATEGY    - Algoritmos de absorcion de agua")
+    print("=" * 70)
+
+if __name__ == "__main__":
+    main()
 
 
 
@@ -128,7 +350,7 @@ Total de directorios procesados: 21
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 1/66: __init__.py
+# ARCHIVO 2/67: __init__.py
 # Directorio: .
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\__init__.py
 # ==============================================================================
@@ -136,7 +358,7 @@ Total de directorios procesados: 21
 
 
 # ==============================================================================
-# ARCHIVO 2/66: constantes.py
+# ARCHIVO 3/67: constantes.py
 # Directorio: .
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\constantes.py
 # ==============================================================================
@@ -204,7 +426,7 @@ THREAD_JOIN_TIMEOUT = 2.0  # segundos
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 3/66: __init__.py
+# ARCHIVO 4/67: __init__.py
 # Directorio: entidades
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\__init__.py
 # ==============================================================================
@@ -217,7 +439,7 @@ THREAD_JOIN_TIMEOUT = 2.0  # segundos
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 4/66: __init__.py
+# ARCHIVO 5/67: __init__.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\__init__.py
 # ==============================================================================
@@ -225,7 +447,7 @@ THREAD_JOIN_TIMEOUT = 2.0  # segundos
 
 
 # ==============================================================================
-# ARCHIVO 5/66: arbol.py
+# ARCHIVO 6/67: arbol.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\arbol.py
 # ==============================================================================
@@ -250,7 +472,7 @@ class Arbol(Cultivo, ABC):
 
 
 # ==============================================================================
-# ARCHIVO 6/66: cultivo.py
+# ARCHIVO 7/67: cultivo.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\cultivo.py
 # ==============================================================================
@@ -282,7 +504,7 @@ class Cultivo(ABC):
 
 
 # ==============================================================================
-# ARCHIVO 7/66: hortaliza.py
+# ARCHIVO 8/67: hortaliza.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\hortaliza.py
 # ==============================================================================
@@ -305,7 +527,7 @@ class Hortaliza(Cultivo, ABC):
 
 
 # ==============================================================================
-# ARCHIVO 8/66: lechuga.py
+# ARCHIVO 9/67: lechuga.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\lechuga.py
 # ==============================================================================
@@ -332,7 +554,7 @@ class Lechuga(Hortaliza):
 
 
 # ==============================================================================
-# ARCHIVO 9/66: olivo.py
+# ARCHIVO 10/67: olivo.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\olivo.py
 # ==============================================================================
@@ -360,7 +582,7 @@ class Olivo(Arbol):
 
 
 # ==============================================================================
-# ARCHIVO 10/66: pino.py
+# ARCHIVO 11/67: pino.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\pino.py
 # ==============================================================================
@@ -387,7 +609,7 @@ class Pino(Arbol):
 
 
 # ==============================================================================
-# ARCHIVO 11/66: tipo_aceituna.py
+# ARCHIVO 12/67: tipo_aceituna.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\tipo_aceituna.py
 # ==============================================================================
@@ -402,7 +624,7 @@ class TipoAceituna(Enum):
 
 
 # ==============================================================================
-# ARCHIVO 12/66: zanahoria.py
+# ARCHIVO 13/67: zanahoria.py
 # Directorio: entidades\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\cultivos\zanahoria.py
 # ==============================================================================
@@ -434,7 +656,7 @@ class Zanahoria(Hortaliza):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 13/66: __init__.py
+# ARCHIVO 14/67: __init__.py
 # Directorio: entidades\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\personal\__init__.py
 # ==============================================================================
@@ -442,7 +664,7 @@ class Zanahoria(Hortaliza):
 
 
 # ==============================================================================
-# ARCHIVO 14/66: apto_medico.py
+# ARCHIVO 15/67: apto_medico.py
 # Directorio: entidades\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\personal\apto_medico.py
 # ==============================================================================
@@ -468,7 +690,7 @@ class AptoMedico:
 
 
 # ==============================================================================
-# ARCHIVO 15/66: herramienta.py
+# ARCHIVO 16/67: herramienta.py
 # Directorio: entidades\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\personal\herramienta.py
 # ==============================================================================
@@ -492,7 +714,7 @@ class Herramienta:
 
 
 # ==============================================================================
-# ARCHIVO 16/66: tarea.py
+# ARCHIVO 17/67: tarea.py
 # Directorio: entidades\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\personal\tarea.py
 # ==============================================================================
@@ -525,7 +747,7 @@ class Tarea:
 
 
 # ==============================================================================
-# ARCHIVO 17/66: trabajador.py
+# ARCHIVO 18/67: trabajador.py
 # Directorio: entidades\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\personal\trabajador.py
 # ==============================================================================
@@ -567,7 +789,7 @@ class Trabajador:
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 18/66: __init__.py
+# ARCHIVO 19/67: __init__.py
 # Directorio: entidades\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\terrenos\__init__.py
 # ==============================================================================
@@ -575,7 +797,7 @@ class Trabajador:
 
 
 # ==============================================================================
-# ARCHIVO 19/66: plantacion.py
+# ARCHIVO 20/67: plantacion.py
 # Directorio: entidades\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\terrenos\plantacion.py
 # ==============================================================================
@@ -633,7 +855,7 @@ class Plantacion:
 
 
 # ==============================================================================
-# ARCHIVO 20/66: registro_forestal.py
+# ARCHIVO 21/67: registro_forestal.py
 # Directorio: entidades\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\terrenos\registro_forestal.py
 # ==============================================================================
@@ -671,7 +893,7 @@ class RegistroForestal:
 
 
 # ==============================================================================
-# ARCHIVO 21/66: tierra.py
+# ARCHIVO 22/67: tierra.py
 # Directorio: entidades\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\entidades\terrenos\tierra.py
 # ==============================================================================
@@ -723,7 +945,7 @@ class Tierra:
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 22/66: __init__.py
+# ARCHIVO 23/67: __init__.py
 # Directorio: excepciones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\excepciones\__init__.py
 # ==============================================================================
@@ -731,7 +953,7 @@ class Tierra:
 
 
 # ==============================================================================
-# ARCHIVO 23/66: agua_agotada_exception.py
+# ARCHIVO 24/67: agua_agotada_exception.py
 # Directorio: excepciones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\excepciones\agua_agotada_exception.py
 # ==============================================================================
@@ -760,7 +982,7 @@ class AguaAgotadaException(ForestacionException):
 
 
 # ==============================================================================
-# ARCHIVO 24/66: forestacion_exception.py
+# ARCHIVO 25/67: forestacion_exception.py
 # Directorio: excepciones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\excepciones\forestacion_exception.py
 # ==============================================================================
@@ -784,7 +1006,7 @@ class ForestacionException(Exception):
 
 
 # ==============================================================================
-# ARCHIVO 25/66: mensajes_exception.py
+# ARCHIVO 26/67: mensajes_exception.py
 # Directorio: excepciones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\excepciones\mensajes_exception.py
 # ==============================================================================
@@ -812,7 +1034,7 @@ class MensajesException:
 
 
 # ==============================================================================
-# ARCHIVO 26/66: persistencia_exception.py
+# ARCHIVO 27/67: persistencia_exception.py
 # Directorio: excepciones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\excepciones\persistencia_exception.py
 # ==============================================================================
@@ -840,7 +1062,7 @@ class PersistenciaException(ForestacionException):
 
 
 # ==============================================================================
-# ARCHIVO 27/66: superficie_insuficiente_exception.py
+# ARCHIVO 28/67: superficie_insuficiente_exception.py
 # Directorio: excepciones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\excepciones\superficie_insuficiente_exception.py
 # ==============================================================================
@@ -874,7 +1096,7 @@ class SuperficieInsuficienteException(ForestacionException):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 28/66: __init__.py
+# ARCHIVO 29/67: __init__.py
 # Directorio: patrones
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\__init__.py
 # ==============================================================================
@@ -887,7 +1109,7 @@ class SuperficieInsuficienteException(ForestacionException):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 29/66: __init__.py
+# ARCHIVO 30/67: __init__.py
 # Directorio: patrones\factory
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\factory\__init__.py
 # ==============================================================================
@@ -895,7 +1117,7 @@ class SuperficieInsuficienteException(ForestacionException):
 
 
 # ==============================================================================
-# ARCHIVO 30/66: cultivo_factory.py
+# ARCHIVO 31/67: cultivo_factory.py
 # Directorio: patrones\factory
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\factory\cultivo_factory.py
 # ==============================================================================
@@ -954,7 +1176,7 @@ class CultivoFactory:
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 31/66: __init__.py
+# ARCHIVO 32/67: __init__.py
 # Directorio: patrones\observer
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\observer\__init__.py
 # ==============================================================================
@@ -962,7 +1184,7 @@ class CultivoFactory:
 
 
 # ==============================================================================
-# ARCHIVO 32/66: observable.py
+# ARCHIVO 33/67: observable.py
 # Directorio: patrones\observer
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\observer\observable.py
 # ==============================================================================
@@ -992,7 +1214,7 @@ class Observable(Generic[T], ABC):
 
 
 # ==============================================================================
-# ARCHIVO 33/66: observer.py
+# ARCHIVO 34/67: observer.py
 # Directorio: patrones\observer
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\observer\observer.py
 # ==============================================================================
@@ -1016,7 +1238,7 @@ class Observer(Generic[T], ABC):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 34/66: __init__.py
+# ARCHIVO 35/67: __init__.py
 # Directorio: patrones\observer\eventos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\observer\eventos\__init__.py
 # ==============================================================================
@@ -1024,7 +1246,7 @@ class Observer(Generic[T], ABC):
 
 
 # ==============================================================================
-# ARCHIVO 35/66: evento_plantacion.py
+# ARCHIVO 36/67: evento_plantacion.py
 # Directorio: patrones\observer\eventos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\observer\eventos\evento_plantacion.py
 # ==============================================================================
@@ -1042,7 +1264,7 @@ class EventoPlantacion:
 
 
 # ==============================================================================
-# ARCHIVO 36/66: evento_sensor.py
+# ARCHIVO 37/67: evento_sensor.py
 # Directorio: patrones\observer\eventos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\observer\eventos\evento_sensor.py
 # ==============================================================================
@@ -1066,7 +1288,7 @@ class EventoSensor:
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 37/66: __init__.py
+# ARCHIVO 38/67: __init__.py
 # Directorio: patrones\singleton
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\singleton\__init__.py
 # ==============================================================================
@@ -1079,7 +1301,7 @@ class EventoSensor:
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 38/66: __init__.py
+# ARCHIVO 39/67: __init__.py
 # Directorio: patrones\strategy
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\strategy\__init__.py
 # ==============================================================================
@@ -1087,7 +1309,7 @@ class EventoSensor:
 
 
 # ==============================================================================
-# ARCHIVO 39/66: absorcion_agua_strategy.py
+# ARCHIVO 40/67: absorcion_agua_strategy.py
 # Directorio: patrones\strategy
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\strategy\absorcion_agua_strategy.py
 # ==============================================================================
@@ -1119,7 +1341,7 @@ class AbsorcionAguaStrategy(ABC):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 40/66: __init__.py
+# ARCHIVO 41/67: __init__.py
 # Directorio: patrones\strategy\impl
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\strategy\impl\__init__.py
 # ==============================================================================
@@ -1127,7 +1349,7 @@ class AbsorcionAguaStrategy(ABC):
 
 
 # ==============================================================================
-# ARCHIVO 41/66: absorcion_constante_strategy.py
+# ARCHIVO 42/67: absorcion_constante_strategy.py
 # Directorio: patrones\strategy\impl
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\strategy\impl\absorcion_constante_strategy.py
 # ==============================================================================
@@ -1150,7 +1372,7 @@ class AbsorcionConstanteStrategy(AbsorcionAguaStrategy):
 
 
 # ==============================================================================
-# ARCHIVO 42/66: absorcion_seasonal_strategy.py
+# ARCHIVO 43/67: absorcion_seasonal_strategy.py
 # Directorio: patrones\strategy\impl
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\patrones\strategy\impl\absorcion_seasonal_strategy.py
 # ==============================================================================
@@ -1180,7 +1402,7 @@ class AbsorcionSeasonalStrategy(AbsorcionAguaStrategy):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 43/66: __init__.py
+# ARCHIVO 44/67: __init__.py
 # Directorio: riego
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\riego\__init__.py
 # ==============================================================================
@@ -1193,7 +1415,7 @@ class AbsorcionSeasonalStrategy(AbsorcionAguaStrategy):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 44/66: __init__.py
+# ARCHIVO 45/67: __init__.py
 # Directorio: riego\control
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\riego\control\__init__.py
 # ==============================================================================
@@ -1201,7 +1423,7 @@ class AbsorcionSeasonalStrategy(AbsorcionAguaStrategy):
 
 
 # ==============================================================================
-# ARCHIVO 45/66: control_riego_task.py
+# ARCHIVO 46/67: control_riego_task.py
 # Directorio: riego\control
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\riego\control\control_riego_task.py
 # ==============================================================================
@@ -1283,7 +1505,7 @@ class ControlRiegoTask(threading.Thread, Observer[EventoSensor]):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 46/66: __init__.py
+# ARCHIVO 47/67: __init__.py
 # Directorio: riego\sensores
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\riego\sensores\__init__.py
 # ==============================================================================
@@ -1291,7 +1513,7 @@ class ControlRiegoTask(threading.Thread, Observer[EventoSensor]):
 
 
 # ==============================================================================
-# ARCHIVO 47/66: humedad_reader_task.py
+# ARCHIVO 48/67: humedad_reader_task.py
 # Directorio: riego\sensores
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\riego\sensores\humedad_reader_task.py
 # ==============================================================================
@@ -1331,7 +1553,7 @@ class HumedadReaderTask(threading.Thread, Observable[EventoSensor]):
 
 
 # ==============================================================================
-# ARCHIVO 48/66: temperatura_reader_task.py
+# ARCHIVO 49/67: temperatura_reader_task.py
 # Directorio: riego\sensores
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\riego\sensores\temperatura_reader_task.py
 # ==============================================================================
@@ -1376,7 +1598,7 @@ class TemperaturaReaderTask(threading.Thread, Observable[EventoSensor]):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 49/66: __init__.py
+# ARCHIVO 50/67: __init__.py
 # Directorio: servicios
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\__init__.py
 # ==============================================================================
@@ -1389,7 +1611,7 @@ class TemperaturaReaderTask(threading.Thread, Observable[EventoSensor]):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 50/66: __init__.py
+# ARCHIVO 51/67: __init__.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\__init__.py
 # ==============================================================================
@@ -1397,7 +1619,7 @@ class TemperaturaReaderTask(threading.Thread, Observable[EventoSensor]):
 
 
 # ==============================================================================
-# ARCHIVO 51/66: arbol_service.py
+# ARCHIVO 52/67: arbol_service.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\arbol_service.py
 # ==============================================================================
@@ -1417,7 +1639,7 @@ class ArbolService(CultivoService):
 
 
 # ==============================================================================
-# ARCHIVO 52/66: cultivo_service.py
+# ARCHIVO 53/67: cultivo_service.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\cultivo_service.py
 # ==============================================================================
@@ -1481,7 +1703,7 @@ class CultivoService(ABC):
 
 
 # ==============================================================================
-# ARCHIVO 53/66: cultivo_service_registry.py
+# ARCHIVO 54/67: cultivo_service_registry.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\cultivo_service_registry.py
 # ==============================================================================
@@ -1610,7 +1832,7 @@ class CultivoServiceRegistry:
 
 
 # ==============================================================================
-# ARCHIVO 54/66: lechuga_service.py
+# ARCHIVO 55/67: lechuga_service.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\lechuga_service.py
 # ==============================================================================
@@ -1650,7 +1872,7 @@ class LechugaService(CultivoService):
 
 
 # ==============================================================================
-# ARCHIVO 55/66: olivo_service.py
+# ARCHIVO 56/67: olivo_service.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\olivo_service.py
 # ==============================================================================
@@ -1703,7 +1925,7 @@ class OlivoService(ArbolService):
 
 
 # ==============================================================================
-# ARCHIVO 56/66: pino_service.py
+# ARCHIVO 57/67: pino_service.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\pino_service.py
 # ==============================================================================
@@ -1756,7 +1978,7 @@ class PinoService(ArbolService):
 
 
 # ==============================================================================
-# ARCHIVO 57/66: zanahoria_service.py
+# ARCHIVO 58/67: zanahoria_service.py
 # Directorio: servicios\cultivos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\cultivos\zanahoria_service.py
 # ==============================================================================
@@ -1800,7 +2022,7 @@ class ZanahoriaService(CultivoService):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 58/66: __init__.py
+# ARCHIVO 59/67: __init__.py
 # Directorio: servicios\negocio
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\negocio\__init__.py
 # ==============================================================================
@@ -1808,7 +2030,7 @@ class ZanahoriaService(CultivoService):
 
 
 # ==============================================================================
-# ARCHIVO 59/66: fincas_service.py
+# ARCHIVO 60/67: fincas_service.py
 # Directorio: servicios\negocio
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\negocio\fincas_service.py
 # ==============================================================================
@@ -1858,7 +2080,7 @@ class FincasService:
 
 
 # ==============================================================================
-# ARCHIVO 60/66: paquete.py
+# ARCHIVO 61/67: paquete.py
 # Directorio: servicios\negocio
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\negocio\paquete.py
 # ==============================================================================
@@ -1905,7 +2127,7 @@ class Paquete(Generic[T]):
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 61/66: __init__.py
+# ARCHIVO 62/67: __init__.py
 # Directorio: servicios\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\personal\__init__.py
 # ==============================================================================
@@ -1913,7 +2135,7 @@ class Paquete(Generic[T]):
 
 
 # ==============================================================================
-# ARCHIVO 62/66: trabajador_service.py
+# ARCHIVO 63/67: trabajador_service.py
 # Directorio: servicios\personal
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\personal\trabajador_service.py
 # ==============================================================================
@@ -1981,7 +2203,7 @@ class TrabajadorService:
 ################################################################################
 
 # ==============================================================================
-# ARCHIVO 63/66: __init__.py
+# ARCHIVO 64/67: __init__.py
 # Directorio: servicios\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\terrenos\__init__.py
 # ==============================================================================
@@ -1989,7 +2211,7 @@ class TrabajadorService:
 
 
 # ==============================================================================
-# ARCHIVO 64/66: plantacion_service.py
+# ARCHIVO 65/67: plantacion_service.py
 # Directorio: servicios\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\terrenos\plantacion_service.py
 # ==============================================================================
@@ -2061,7 +2283,7 @@ class PlantacionService:
 
 
 # ==============================================================================
-# ARCHIVO 65/66: registro_forestal_service.py
+# ARCHIVO 66/67: registro_forestal_service.py
 # Directorio: servicios\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\terrenos\registro_forestal_service.py
 # ==============================================================================
@@ -2174,7 +2396,7 @@ class RegistroForestalService:
 
 
 # ==============================================================================
-# ARCHIVO 66/66: tierra_service.py
+# ARCHIVO 67/67: tierra_service.py
 # Directorio: servicios\terrenos
 # Ruta completa: C:\Users\Valen\Desktop\parcial-diseno-sistemas\python_forestacion\servicios\terrenos\tierra_service.py
 # ==============================================================================
